@@ -79,7 +79,31 @@ Guidelines:
   return response.choices[0]?.message?.content || 'Sorry, I could not generate a summary.';
 }
 
-// A2A endpoint for Telex
+// A2A endpoint info (GET)
+app.get('/a2a/agent/summarizeBot', (req, res) => {
+  res.json({
+    agent: 'SummarizeBot',
+    status: 'ready',
+    endpoint: '/a2a/agent/summarizeBot',
+    method: 'POST',
+    description: 'AI-powered summarization agent for Telex',
+    usage: {
+      trigger: '@bot summarize',
+      modes: ['brief', 'detailed'],
+      supports: ['text', 'URLs']
+    },
+    example: {
+      request: {
+        method: 'POST',
+        body: {
+          prompt: '@bot summarize brief: Your text here...'
+        }
+      }
+    }
+  });
+});
+
+// A2A endpoint for Telex (POST)
 app.post('/a2a/agent/summarizeBot', async (req, res) => {
   try {
     const { prompt, message } = req.body;
