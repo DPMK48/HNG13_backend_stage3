@@ -8,8 +8,14 @@ import * as cheerio from 'cheerio';
 const app = express();
 app.use(express.json());
 
+// Verify OpenAI API key is set
+if (!process.env.OPENAI_API_KEY) {
+  console.error('❌ ERROR: OPENAI_API_KEY environment variable is not set!');
+  console.error('Please add it to your Railway environment variables.');
+}
+
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || 'dummy-key-for-health-check',
 });
 
 // Helper function to scrape URLs
@@ -119,10 +125,12 @@ app.get('/', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT || '3000', 10);
+const HOST = '0.0.0.0'; // Railway requires binding to 0.0.0.0
 
-app.listen(PORT, () => {
-  console.log(`🤖 SummarizeBot is running on port ${PORT}`);
-  console.log(`📡 A2A endpoint: http://localhost:${PORT}/a2a/agent/summarizeBot`);
-  console.log(`❤️  Health check: http://localhost:${PORT}/health`);
+app.listen(PORT, HOST, () => {
+  console.log(`🤖 SummarizeBot is running on ${HOST}:${PORT}`);
+  console.log(`📡 A2A endpoint available`);
+  console.log(`❤️  Health check: /health`);
+  console.log(`🔑 OpenAI Key configured: ${process.env.OPENAI_API_KEY ? 'Yes' : 'No'}`);
 });
