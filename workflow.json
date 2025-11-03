@@ -16,7 +16,7 @@
       ],
       "type": "a2a/mastra-a2a-node",
       "typeVersion": 1,
-      "url": "YOUR_DEPLOYED_URL/a2a/agent/summarizeBot"
+      "url": "https://web-production-0518.up.railway.app/a2a/agent/summarizeBot"
     }
   ],
   "pinData": {},
