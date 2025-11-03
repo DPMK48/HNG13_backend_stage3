@@ -129,8 +129,9 @@ const PORT = parseInt(process.env.PORT || '3000', 10);
 const HOST = '0.0.0.0'; // Railway requires binding to 0.0.0.0
 
 app.listen(PORT, HOST, () => {
-  console.log(`🤖 SummarizeBot is running on ${HOST}:${PORT}`);
-  console.log(`📡 A2A endpoint available`);
-  console.log(`❤️  Health check: /health`);
-  console.log(`🔑 OpenAI Key configured: ${process.env.OPENAI_API_KEY ? 'Yes' : 'No'}`);
+  console.log(`✅ SummarizeBot started successfully!`);
+  console.log(`🚀 Running on ${HOST}:${PORT}`);
+  console.log(`📡 A2A endpoint: http://${HOST}:${PORT}/a2a/agent/summarizeBot`);
+  console.log(`❤️  Health: http://${HOST}:${PORT}/health`);
+  console.log(`🔑 OpenAI API Key: ${process.env.OPENAI_API_KEY ? '✓ Configured' : '✗ Missing'}`);
 });
