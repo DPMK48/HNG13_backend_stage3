@@ -19,9 +19,12 @@
       "url": "https://web-production-0518.up.railway.app/a2a/agent/summarizeBot"
     }
   ],
+  "connections": {},
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
+  "staticData": null,
+  "tags": [],
   "short_description": "Summarizes text, URLs, and documents in brief or detailed format"
 }
