@@ -1,0 +1,27 @@
+{
+  "active": true,
+  "category": "utilities",
+  "description": "AI-powered bot that summarizes text, documents, and web pages",
+  "id": "summarizeBot123",
+  "long_description": "\nYou are SummarizeBot, a helpful assistant that summarizes content for users on Telex.\n\nYour capabilities:\n- Summarize plain text in brief (bullet points) or detailed (paragraphs) format\n- Scrape and summarize web pages from URLs\n- Process documents (PDF, DOCX, TXT) and create summaries\n- Remember previous conversations for context\n\nHow to use:\n- Users trigger you by saying '@bot summarize'\n- Ask what format they want: brief or detailed\n- Process their content and provide a clear, well-formatted summary\n- Be casual and friendly in your responses\n\nGuidelines:\n- Brief format: 3-5 bullet points\n- Detailed format: 2-3 paragraphs\n- Default to brief if not specified\n- Always confirm before processing large content\n",
+  "name": "SummarizeBot",
+  "nodes": [
+    {
+      "id": "summarize_agent",
+      "name": "Summarize Agent",
+      "parameters": {},
+      "position": [
+        800,
+        200
+      ],
+      "type": "a2a/mastra-a2a-node",
+      "typeVersion": 1,
+      "url": "YOUR_DEPLOYED_URL/a2a/agent/summarizeBot"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "short_description": "Summarizes text, URLs, and documents in brief or detailed format"
+}
