@@ -131,6 +131,31 @@ export async function startMastra(): Promise<void> {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const http = require('http');
     const server = http.createServer(async (req: any, res: any) => {
+      if (req.method === 'GET' && req.url === '/') {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({
+          service: 'SummarizeBot',
+          status: 'running',
+          version: '1.0.0',
+          framework: 'Mastra',
+          endpoints: {
+            agent: '/a2a/agent/summarizeBot',
+            health: '/health'
+          }
+        }));
+        return;
+      }
+
+      if (req.method === 'GET' && req.url === '/health') {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({
+          status: 'healthy',
+          agent: 'SummarizeBot',
+          timestamp: new Date().toISOString()
+        }));
+        return;
+      }
+
       if (req.method === 'GET' && req.url && req.url.includes('/a2a/agent/summarizeBot')) {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(agentMetadata()));
