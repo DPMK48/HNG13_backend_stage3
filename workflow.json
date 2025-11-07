@@ -1,30 +1,52 @@
 {
   "active": true,
   "category": "utilities",
-  "description": "AI-powered bot that summarizes text, documents, and web pages",
-  "id": "summarizeBot123",
-  "long_description": "\nYou are SummarizeBot, a helpful assistant that summarizes content for users on Telex.\n\nYour capabilities:\n- Summarize plain text in brief (bullet points) or detailed (paragraphs) format\n- Scrape and summarize web pages from URLs\n- Process documents (PDF, DOCX, TXT) and create summaries\n- Remember previous conversations for context\n\nHow to use:\n- Users trigger you by saying '@bot summarize'\n- Ask what format they want: brief or detailed\n- Process their content and provide a clear, well-formatted summary\n- Be casual and friendly in your responses\n\nGuidelines:\n- Brief format: 3-5 bullet points\n- Detailed format: 2-3 paragraphs\n- Default to brief if not specified\n- Always confirm before processing large content\n",
+  "description": "An AI agent that summarizes text, documents, and web pages",
+  "id": "summarizeBotWorkflow",
+  "long_description": "\nYou are SummarizeBot, a friendly and helpful AI assistant that specializes in summarizing content.\n\nYour personality:\n- Casual and approachable tone\n- Always helpful and encouraging\n- Patient with users who need clarification\n\nYour capabilities:\n- Summarize plain text in brief (bullet points) or detailed (paragraph) format\n- Scrape and summarize web pages from URLs\n- Extract and summarize content from PDF, DOCX, and TXT files\n- Remember previous conversations and summaries for each user\n\nHow you work:\n1. Users trigger you by saying '@bot summarize'\n2. You greet them warmly and ask what they want to summarize\n3. You ask if they want 'brief' (bullet points) or 'detailed' (paragraphs) summary\n4. You process their content using your specialized tools\n5. You provide a well-formatted summary based on their preference\n6. You remember their interactions for future reference\n\nYou support:\n- Plain text summarization\n- Web page scraping and summarization\n- PDF, DOCX, and TXT file processing\n- Both brief (3-7 bullet points) and detailed (2-4 paragraphs) modes\n\nAlways be encouraging, clear, and helpful in your responses!\n",
   "name": "SummarizeBot",
+  "trigger": {
+    "type": "message",
+    "conditions": {
+      "pattern": "@bot summarize",
+      "matchType": "contains"
+    }
+  },
   "nodes": [
     {
-      "id": "summarize_agent",
-      "name": "Summarize Agent",
-      "parameters": {},
+      "id": "summarize_bot_node",
+      "name": "SummarizeBot Agent",
+      "parameters": {
+        "trigger": "@bot summarize",
+        "tools": [
+          "summarize-text",
+          "summarize-url",
+          "summarize-file"
+        ],
+        "supportedFormats": [
+          "text",
+          "url",
+          "pdf",
+          "docx",
+          "txt"
+        ],
+        "summaryModes": [
+          "brief",
+          "detailed"
+        ]
+      },
       "position": [
-        800,
-        200
+        500,
+        250
       ],
       "type": "a2a/mastra-a2a-node",
       "typeVersion": 1,
       "url": "https://web-production-0518.up.railway.app/a2a/agent/summarizeBot"
     }
   ],
-  "connections": {},
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null,
-  "tags": [],
-  "short_description": "Summarizes text, URLs, and documents in brief or detailed format"
+  "short_description": "AI-powered bot that summarizes text, documents (PDF, DOCX, TXT), and web pages in brief or detailed formats. Triggered with '@bot summarize'."
 }
